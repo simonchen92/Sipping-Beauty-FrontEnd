@@ -1,3 +1,3 @@
 # Sipping Beauty
 
-End Application for Sipping Beauty
+Front-End Application for Sipping Beauty
