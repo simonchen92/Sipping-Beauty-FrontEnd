@@ -10,6 +10,9 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import Home from '../HomePage/home'
 
+import CreateBeers from '../Beers/createBeers'
+import ShowBeers from '../Beers/showBeers'
+
 class App extends Component {
   constructor () {
     super()
@@ -57,6 +60,12 @@ class App extends Component {
           )} />
           <Route exact path='/' render={() => (
             <Home />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-beer' render={() => (
+            <CreateBeers alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/beers' render={() => (
+            <ShowBeers alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>
