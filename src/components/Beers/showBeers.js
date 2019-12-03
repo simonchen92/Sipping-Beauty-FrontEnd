@@ -34,10 +34,16 @@ class ShowBeers extends Component {
       <div className="main-beer-container">
         <div className="my-beers">My Beers</div>
         <div className="beer-container">
-          {/* {beers.map((beer) => (
-            <ShowBeers key={beer.id}>
-            </ShowBeers>
-          ))} */}
+          {beers.map((beer) => (
+            <div key={beer.id}>
+              <div>{beer.name}</div>
+              <div>{beer.beer_type}</div>
+              <div>{beer.description}</div>
+              <div>{beer.brewery}</div>
+              <div>{beer.location}</div>
+              <div>{beer.rating}</div>
+            </div>
+          ))}
         </div>
       </div>
     )
