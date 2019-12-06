@@ -22,7 +22,7 @@ const BeerForm = ({ name, beer_type, description, brewery, address, rating, hand
           <label className="beer-type">Beer Type</label>
           <input
             required
-            name="Beer Type"
+            name="beer_type"
             className="form-control"
             placeholder="Beer Type"
             type="text"

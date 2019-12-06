@@ -18,7 +18,7 @@ class ShowBeers extends Component {
       .then(response => this.setState({ beers: response.data.beers }))
       .catch(error => {
         console.error(error)
-        this.setState({ name: '', beerType: '', description: '', brewery: '', location: '', rating: '' })
+        this.setState({ name: '', beer_type: '', description: '', brewery: '', location: '', rating: '' })
       })
   }
 
@@ -35,13 +35,13 @@ class ShowBeers extends Component {
         <div className="my-beers">My Beers</div>
         <div className="beer-container">
           {beers.map((beer) => (
-            <div key={beer.id}>
-              <div>{beer.name}</div>
-              <div>{beer.beer_type}</div>
-              <div>{beer.description}</div>
-              <div>{beer.brewery}</div>
-              <div>{beer.location}</div>
-              <div>{beer.rating}</div>
+            <div className="beer-selection" key={beer.id}>
+              <p>Name: {beer.name}</p>
+              <p>Beer Type: {beer.beer_type}</p>
+              <p>Description: {beer.description}</p>
+              <p>Brewery: {beer.brewery}</p>
+              <p>Location: {beer.location}</p>
+              <p>ABV: {beer.rating}</p>
             </div>
           ))}
         </div>

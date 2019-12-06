@@ -13,7 +13,7 @@ class CreateBeers extends Component {
     this.state = {
       beer: {
         name: '',
-        beerType: '',
+        beer_type: '',
         description: '',
         brewery: '',
         location: '',
@@ -27,17 +27,27 @@ class CreateBeers extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
+    const { alert } = this.props
     const beer = this.state
 
-    createBeers(this.props.user, { beer: beer })
+    createBeers(this.props.user, { beer: beer.beer })
       .then(response => this.setState({
         created: true,
         beer: { ...response.data.beer }
       }))
-      .then(() => alert(messages.createBeerSuccess), 'success')
+      .then(() => alert({
+        heading: 'Beer Creation Success',
+        message: messages.createBeerSuccess,
+        variant: 'success'
+      }))
+      .then(console.log(beer))
       .catch(() => {
-        this.setState({ beer: { ...beer, name: '', beerType: '', description: '', brewery: '', location: '', rating: '' } })
-        alert(messages.createBeerFailure, 'danger')
+        this.setState({ beer: { ...beer, name: '', beer_type: '', description: '', brewery: '', location: '', rating: '' } })
+        alert({
+          heading: 'Beer Creation Failure',
+          message: messages.createBeerFailure,
+          variant: 'danger'
+        })
       })
   }
 
@@ -45,7 +55,6 @@ class CreateBeers extends Component {
     const inputName = event.target.name
     const updatedInputValue = event.target.value
     const updatedBeer = { ...this.state.beer, [inputName]: updatedInputValue }
-    console.log(updatedBeer)
     this.setState({ beer: updatedBeer })
   }
 
@@ -57,13 +66,13 @@ class CreateBeers extends Component {
     }
 
     // eslint-disable-next-line camelcase
-    const { name, beerType, description, brewery, location, rating } = this.state.beer
+    const { name, beer_type, description, brewery, location, rating } = this.state.beer
 
     return (
       <BeerForm
         name={name}
         // eslint-disable-next-line camelcase
-        beer_type={beerType}
+        beer_type={beer_type}
         description={description}
         brewery={brewery}
         address={location}
