@@ -11,7 +11,8 @@ class SearchBeers extends Component {
 
     this.state = {
       search: '',
-      beers: ''
+      empty: false,
+      results: []
     }
   }
 
@@ -24,22 +25,16 @@ class SearchBeers extends Component {
     const { search } = this.state
     const { alert, user } = this.props
     searchBeers(user, search)
-      .then(response => this.setState({ beers: console.log(response.data.records), search: '' }))
-      .then(() => {
-        console.log(this.state.beer)
+      .then(response => {
+        if (response.data.records.length < 1) {
+          this.setState({ search: '', empty: true })
+        } else {
+          this.setState({ results: response.data.records, search: '', empty: false })
+        }
       })
-    //   .then(() => {
-    //     if (!this.state.beers || this.state.beers.length === 0) {
-    //       alert({
-    //         heading: 'Beer Found',
-    //         message: messages.searchBeerFailure,
-    //         variant: 'danger'
-    //       })
-    //     }
-    //   })
       .catch(error => {
         console.error(error)
-        this.setState({ name: '', beer_type: '', description: '', brewery: '', location: '', rating: '' })
+        this.setState({ search: '' })
         alert({
           heading: 'Cannot Find Beer',
           message: messages.searchBeerFailure,
@@ -49,7 +44,9 @@ class SearchBeers extends Component {
   }
 
   render () {
-    if (!this.state.beers || this.state.beers.length < 1) {
+    const { results, search, empty } = this.state
+
+    if (empty) {
       return (
         <div className="beer-search">
           <form className="beer-search-form" onSubmit={this.onBeerSearch}>
@@ -60,48 +57,44 @@ class SearchBeers extends Component {
               type="text"
               name="search"
               placeholder="Name of Beer"
-              value={this.state.search}
+              value={search}
               onChange={this.handleChange}
             />
           </form>
         </div>
       )
+    } else {
+      return (
+        <div className="beer-search">
+          <form className="beer-search-form" onSubmit={this.onBeerSearch}>
+            <h3 className="beer-finder">Find Your Beer</h3>
+            <input
+              required
+              className="beer-search-input"
+              type="text"
+              name="search"
+              placeholder="Name of Beer"
+              value={search}
+              onChange={this.handleChange}
+            />
+          </form>
+          <div className="beer-information">
+            {results.map(beer => {
+              return (
+                <div key={beer.fields.id} className="search-beer-information">
+                  <h2>{beer.fields.name}</h2>
+                  <h3>{beer.fields.cat_name}</h3>
+                  <p>Description: {beer.fields.descript}</p>
+                  <p>Brewery: {beer.fields.name_breweries}</p>
+                  <p>Location: {beer.fields.state}, {beer.fields.country}</p>
+                  <p>ABV: {beer.fields.abv}%</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )
     }
-
-    return (
-      <div className="beer-search">
-        <form className="beer-search-form" onSubmit={this.onBeerSearch}>
-          <h3 className="beer-finder">Find Your Beer</h3>
-          <input
-            required
-            className="beer-search-input"
-            type="text"
-            name="search"
-            placeholder="Name of Beer"
-            value={this.state.search}
-            onChange={this.handleChange}
-          />
-        </form>
-        <div>
-          <h2>HIII</h2>
-        </div>
-        <div className="beer-information">
-          {this.state.beers.map(beer => {
-            return (
-              <div key={beer.fields.id} className="search-beer-information">
-                <h2>{beer.fields.name}</h2>
-                <h3>{beer.fields.cat_name}</h3>
-                <p>Description: {beer.fields.descript}</p>
-                <p>Brewery: {beer.fields.name_breweries}</p>
-                <p>Location: {beer.fields.state}, {beer.fields.country}</p>
-                <p>ABV: {beer.fields.abv}%</p>
-              </div>
-            )
-          })}
-        </div>
-        <h3>BLAHHHH</h3>
-      </div>
-    )
   }
 }
 
