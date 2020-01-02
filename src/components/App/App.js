@@ -12,6 +12,7 @@ import Home from '../HomePage/home'
 
 import CreateBeers from '../Beers/createBeers'
 import ShowBeers from '../Beers/showBeers'
+import SearchBeers from '../Beers/searchBeers'
 
 class App extends Component {
   constructor () {
@@ -66,6 +67,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/beers' render={() => (
             <ShowBeers alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/beer-search' render={({ match }) => (
+            <SearchBeers alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>

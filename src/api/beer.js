@@ -21,3 +21,15 @@ export const createBeers = (user, beerData) => {
     data: beerData
   })
 }
+
+// Beer Search Using OpenBeerDB
+export const searchBeers = (user, search) => {
+  return axios({
+    method: 'POST',
+    url: apiUrl + '/search-beer',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: { search }
+  })
+}
