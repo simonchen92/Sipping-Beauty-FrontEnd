@@ -4,6 +4,26 @@ import { withRouter } from 'react-router-dom'
 
 import { searchBeers } from '../../api/beer'
 import messages from '../AutoDismissAlert/messages'
+import styled from 'styled-components'
+
+const SearchBeerWrapper = styled.div`
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1em;
+    padding: 1em;
+`
+const BeerSearchBar = styled.form`
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+    padding: 1em;
+    input {
+        width: 50vw;
+    }
+    h3 {
+        text-align: center;
+    }
+`
 
 class SearchBeers extends Component {
   constructor () {
@@ -48,46 +68,52 @@ class SearchBeers extends Component {
 
     if (empty) {
       return (
-        <div className="beer-search">
-          <form className="beer-search-form" onSubmit={this.onBeerSearch}>
-            <h3 className="beer-finder">Find Your Beer</h3>
-            <input
-              required
-              className="beer-search-input"
-              type="text"
-              name="search"
-              placeholder="Name of Beer"
-              value={search}
-              onChange={this.handleChange}
-            />
-          </form>
-        </div>
+        <BeerSearchBar>
+          <div className="beer-search">
+            <form className="beer-search-form" onSubmit={this.onBeerSearch}>
+              <h3 className="beer-finder">Find Your Beer</h3>
+              <input
+                required
+                className="beer-search-input"
+                type="text"
+                name="search"
+                placeholder="Name of Beer"
+                value={search}
+                onChange={this.handleChange}
+              />
+            </form>
+          </div>
+        </BeerSearchBar>
       )
     } else {
       return (
         <div className="beer-search">
-          <form className="beer-search-form" onSubmit={this.onBeerSearch}>
-            <h3 className="beer-finder">Find Your Beer</h3>
-            <input
-              required
-              className="beer-search-input"
-              type="text"
-              name="search"
-              placeholder="Name of Beer"
-              value={search}
-              onChange={this.handleChange}
-            />
-          </form>
+          <BeerSearchBar>
+            <form className="beer-search-form" onSubmit={this.onBeerSearch}>
+              <h3 className="beer-finder">Find Your Beer</h3>
+              <input
+                required
+                className="beer-search-input"
+                type="text"
+                name="search"
+                placeholder="Name of Beer"
+                value={search}
+                onChange={this.handleChange}
+              />
+            </form>
+          </BeerSearchBar>
           <div className="beer-information">
             {results.map(beer => {
               return (
                 <div key={beer.fields.id} className="search-beer-information">
-                  <h2>{beer.fields.name}</h2>
-                  <h3>{beer.fields.cat_name}</h3>
-                  <p>Description: {beer.fields.descript}</p>
-                  <p>Brewery: {beer.fields.name_breweries}</p>
-                  <p>Location: {beer.fields.state}, {beer.fields.country}</p>
-                  <p>ABV: {beer.fields.abv}%</p>
+                  <SearchBeerWrapper>
+                    <h2>{beer.fields.name}</h2>
+                    <h3>{beer.fields.cat_name}</h3>
+                    <p>Description: {beer.fields.descript}</p>
+                    <p>Brewery: {beer.fields.name_breweries}</p>
+                    <p>Location: {beer.fields.state}, {beer.fields.country}</p>
+                    <p>ABV: {beer.fields.abv}%</p>
+                  </SearchBeerWrapper>
                 </div>
               )
             })}
