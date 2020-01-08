@@ -25,6 +25,23 @@ const BeerSearchBar = styled.form`
     }
 `
 
+const SearchBar = styled.div`
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1em;
+        padding: 1em;
+    }
+    input {
+        width: 50vw;
+        align-self: center;
+    }
+    h3 {
+        text-align: center;
+    }
+`
+
 class SearchBeers extends Component {
   constructor () {
     super()
@@ -87,8 +104,8 @@ class SearchBeers extends Component {
       )
     } else {
       return (
-        <div className="beer-search">
-          <BeerSearchBar>
+        <SearchBar>
+          <div className="beer-search">
             <form className="beer-search-form" onSubmit={this.onBeerSearch}>
               <h3 className="beer-finder">Find Your Beer</h3>
               <input
@@ -101,24 +118,27 @@ class SearchBeers extends Component {
                 onChange={this.handleChange}
               />
             </form>
-          </BeerSearchBar>
-          <div className="beer-information">
-            {results.map(beer => {
-              return (
-                <div key={beer.fields.id} className="search-beer-information">
-                  <SearchBeerWrapper>
-                    <h2>{beer.fields.name}</h2>
-                    <h3>{beer.fields.style_name}</h3>
-                    <p>Description: {beer.fields.descript}</p>
-                    <p>Brewery: {beer.fields.name_breweries}</p>
-                    <p>Location: {beer.fields.state}, {beer.fields.country}</p>
-                    <p>ABV: {beer.fields.abv}%</p>
-                  </SearchBeerWrapper>
-                </div>
-              )
-            })}
+            <div className="beer-information">
+              {results.map((beer, index) => {
+                return (
+                  <div key={beer.fields.id} className="search-beer-information">
+                    <SearchBeerWrapper>
+                      <h2>{beer.fields.name}</h2>
+                      <h3>{beer.fields.style_name}</h3>
+                      <p>Description: {beer.fields.descript}</p>
+                      <p>Brewery: {beer.fields.name_breweries}</p>
+                      <p>Location: {beer.fields.state}, {beer.fields.country}</p>
+                      <p>ABV: {beer.fields.abv}%</p>
+                      <div className="beer-button">
+                        <button className="btn-danger add-beer" onClick={this.handleSubmit} value={index} name="beer">Add Beer</button>
+                      </div>
+                    </SearchBeerWrapper>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-        </div>
+        </SearchBar>
       )
     }
   }
