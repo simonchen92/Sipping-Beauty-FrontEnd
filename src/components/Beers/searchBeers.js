@@ -108,7 +108,7 @@ class SearchBeers extends Component {
                 <div key={beer.fields.id} className="search-beer-information">
                   <SearchBeerWrapper>
                     <h2>{beer.fields.name}</h2>
-                    <h3>{beer.fields.cat_name}</h3>
+                    <h3>{beer.fields.style_name}</h3>
                     <p>Description: {beer.fields.descript}</p>
                     <p>Brewery: {beer.fields.name_breweries}</p>
                     <p>Location: {beer.fields.state}, {beer.fields.country}</p>
