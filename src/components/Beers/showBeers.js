@@ -9,19 +9,24 @@ const BeerWrapper = styled.div`
   .beer-selection {
     display: grid;
     border: 1px solid black
-    border-radius: 10px;
+    border-radius: 8px;
     justify-items: center;
     margin: 1em;
+    padding: 1em;
   }
   .beer-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  p {
+    text-align: center;
   }
 `
 
 const Header = styled.div`
   display: grid;
   justify-items: center;
+  margin: 1em;
 `
 
 class ShowBeers extends Component {
