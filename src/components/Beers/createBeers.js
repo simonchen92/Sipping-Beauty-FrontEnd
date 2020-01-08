@@ -5,6 +5,15 @@ import { Redirect } from 'react-router'
 import BeerForm from './beerForm'
 import messages from '../AutoDismissAlert/messages'
 import { createBeers } from '../../api/beer'
+import styled from 'styled-components'
+
+const BeerFormWrapper = styled.form`
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+  }
+`
 
 class CreateBeers extends Component {
   constructor () {
@@ -69,18 +78,20 @@ class CreateBeers extends Component {
     const { name, beer_type, description, brewery, location, rating } = this.state.beer
 
     return (
-      <BeerForm
-        name={name}
-        // eslint-disable-next-line camelcase
-        beer_type={beer_type}
-        description={description}
-        brewery={brewery}
-        address={location}
-        rating={rating}
-        message={message}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-      />
+      <BeerFormWrapper>
+        <BeerForm
+          name={name}
+          // eslint-disable-next-line camelcase
+          beer_type={beer_type}
+          description={description}
+          brewery={brewery}
+          address={location}
+          rating={rating}
+          message={message}
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+        />
+      </BeerFormWrapper>
     )
   }
 }
