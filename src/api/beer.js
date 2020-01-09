@@ -34,14 +34,14 @@ export const searchBeers = (user, search) => {
   })
 }
 
-// // Adding Beer from Beer Search
-// export const addBeer = (beer, user) => {
-//   return axios({
-//     method: 'POST',
-//     url: apiUrl + '/beers',
-//     headers: {
-//       'Authorization': `Token token=${user.token}`
-//     },
-//     data: { beer }
-//   })
-// }
+// Adding Beer from Beer Search
+export const addBeer = (beer, user) => {
+  return axios({
+    method: 'POST',
+    url: apiUrl + '/beers',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: { beer }
+  })
+}

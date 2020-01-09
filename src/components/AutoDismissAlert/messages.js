@@ -8,5 +8,7 @@ export default {
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   createBeerSuccess: 'Successfully created a beer!',
   createBeerFailure: 'Unsuccessful beer creation! Please try again!',
-  searchBeerFailure: 'Nothing was found. Please try again!'
+  searchBeerFailure: 'Nothing was found. Please try again!',
+  addedBeerSuccess: 'Successfully added beer to list!',
+  addedBeerFailure: 'Could not add beer to list. Please try again!'
 }

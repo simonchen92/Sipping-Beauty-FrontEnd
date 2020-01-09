@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // import { Redirect } from 'react-router'
 
-import { searchBeers } from '../../api/beer'
+import { searchBeers, addBeer } from '../../api/beer'
 import messages from '../AutoDismissAlert/messages'
 import styled from 'styled-components'
 
@@ -11,17 +11,8 @@ const SearchBeerWrapper = styled.div`
     border-radius: 10px;
     margin: 1em;
     padding: 1em;
-`
-const BeerSearchBar = styled.form`
-    display: flex;
-    justify-content: center;
-    margin: 1em;
-    padding: 1em;
-    input {
-        width: 50vw;
-    }
     h3 {
-        text-align: center;
+        text-align: left;
     }
 `
 
@@ -61,6 +52,7 @@ class SearchBeers extends Component {
     event.preventDefault()
     const { search } = this.state
     const { alert, user } = this.props
+
     searchBeers(user, search)
       .then(response => {
         if (response.data.records.length < 1) {
@@ -80,12 +72,41 @@ class SearchBeers extends Component {
       })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    const { alert, user } = this.props
+    const beerObj = this.state.results[Number(event.target.value)]
+    console.log(beerObj)
+
+    const addedBeer = {
+      name: beerObj.fields.name,
+      beer_type: beerObj.fields.style_name,
+      description: beerObj.fields.descript,
+      brewery: beerObj.fields.name_breweries,
+      location: `${beerObj.fields.state}, ${beerObj.fields.country}`,
+      rating: beerObj.fields.abv
+    }
+
+    addBeer(addedBeer, user)
+      .then(() => alert({
+        message: messages.addedBeerSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        console.log(error)
+        alert({
+          message: messages.addedBeerFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
   render () {
     const { results, search, empty } = this.state
 
     if (empty) {
       return (
-        <BeerSearchBar>
+        <SearchBar>
           <div className="beer-search">
             <form className="beer-search-form" onSubmit={this.onBeerSearch}>
               <h3 className="beer-finder">Find Your Beer</h3>
@@ -100,7 +121,7 @@ class SearchBeers extends Component {
               />
             </form>
           </div>
-        </BeerSearchBar>
+        </SearchBar>
       )
     } else {
       return (
@@ -124,7 +145,7 @@ class SearchBeers extends Component {
                   <div key={beer.fields.id} className="search-beer-information">
                     <SearchBeerWrapper>
                       <h2>{beer.fields.name}</h2>
-                      <h3>{beer.fields.style_name}</h3>
+                      <h4>{beer.fields.style_name}</h4>
                       <p>Description: {beer.fields.descript}</p>
                       <p>Brewery: {beer.fields.name_breweries}</p>
                       <p>Location: {beer.fields.state}, {beer.fields.country}</p>
