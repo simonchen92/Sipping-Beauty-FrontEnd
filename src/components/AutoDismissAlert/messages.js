@@ -10,5 +10,7 @@ export default {
   createBeerFailure: 'Unsuccessful beer creation! Please try again!',
   searchBeerFailure: 'Nothing was found. Please try again!',
   addedBeerSuccess: 'Successfully added beer to list!',
-  addedBeerFailure: 'Could not add beer to list. Please try again!'
+  addedBeerFailure: 'Could not add beer to list. Please try again!',
+  deleteBeerSuccess: 'Successfully Deleted Beer from List!',
+  failure: 'Something Went Wrong! Please try again!'
 }

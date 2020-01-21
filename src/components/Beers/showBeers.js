@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { showBeers } from '../../api/beer'
+import { showBeers, deleteBeer } from '../../api/beer'
+import messages from '../AutoDismissAlert/messages'
 import styled from 'styled-components'
 
 // Styling for beers section
 const BeerWrapper = styled.div`
   .beer-selection {
     display: grid;
-    border: 1px solid black
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 8px;
-    justify-items: center;
     margin: 1em;
     padding: 1em;
   }
-  .beer-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  p {
-    text-align: center;
+  button {
+    width: 15%;
   }
 `
 
@@ -27,6 +24,8 @@ const Header = styled.div`
   display: grid;
   justify-items: center;
   margin: 1em;
+  font-size: 2em;
+  font-weight: bold;
 `
 
 class ShowBeers extends Component {
@@ -48,6 +47,25 @@ class ShowBeers extends Component {
       })
   }
 
+  handleDelete = id => {
+    const user = this.props.user
+    const { alert } = this.props
+
+    deleteBeer(user, id)
+      .then(() => this.componentDidMount())
+      .then(() => alert({
+        message: messages.deleteBeerSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        console.error(error)
+        alert({
+          message: messages.failure,
+          variant: 'danger'
+        })
+      })
+  }
+
   render () {
     const { beers } = this.state
     console.log(beers)
@@ -63,14 +81,15 @@ class ShowBeers extends Component {
         </Header>
         <BeerWrapper>
           <div className="beer-container">
-            {beers.map((beer) => (
+            {beers.map((beer, index) => (
               <div className="beer-selection" key={beer.id}>
                 <p>Name: {beer.name}</p>
                 <p>Beer Type: {beer.beer_type}</p>
                 <p>Description: {beer.description}</p>
                 <p>Brewery: {beer.brewery}</p>
                 <p>Location: {beer.location}</p>
-                <p>ABV: {beer.rating}</p>
+                <p>ABV: {beer.rating}%</p>
+                <button className="btn-danger delete-beer" value={index} onClick={() => this.handleDelete(beer.id)}>Delete Beer</button>
               </div>
             ))}
           </div>

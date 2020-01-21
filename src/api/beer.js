@@ -45,3 +45,15 @@ export const addBeer = (beer, user) => {
     data: { beer }
   })
 }
+
+// Delete Beer from list
+export const deleteBeer = (user, id) => {
+  return axios({
+    method: 'DELETE',
+    url: apiUrl + `/beers/${id}`,
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    contentType: 'application/json'
+  })
+}
