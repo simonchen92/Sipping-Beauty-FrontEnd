@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const HomePage = styled.div`
+  font-family: 'Gloria Hallelujah', cursive;
   text-align: center;
   margin: 1em;
 `

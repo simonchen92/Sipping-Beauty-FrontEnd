@@ -9,6 +9,7 @@ import styled from 'styled-components'
 
 const BeerFormWrapper = styled.form`
   border: 1px solid black;
+  font-family: 'Gloria Hallelujah', cursive;
   margin: 1em;
   padding: 1em;
   text-align: center;

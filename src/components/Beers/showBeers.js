@@ -10,13 +10,11 @@ const BeerWrapper = styled.div`
   .beer-selection {
     display: grid;
     border: 1px solid black;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    font-family: 'Gloria Hallelujah', cursive;
     margin: 1em;
     padding: 1em;
-  }
-  button {
-    width: 15%;
   }
 `
 
@@ -89,7 +87,9 @@ class ShowBeers extends Component {
                 <p>Brewery: {beer.brewery}</p>
                 <p>Location: {beer.location}</p>
                 <p>ABV: {beer.rating}%</p>
-                <button className="btn-danger delete-beer" value={index} onClick={() => this.handleDelete(beer.id)}>Delete Beer</button>
+                <div className="delete-button">
+                  <button className="btn-danger delete-beer" value={index} onClick={() => this.handleDelete(beer.id)}>Remove</button>
+                </div>
               </div>
             ))}
           </div>
