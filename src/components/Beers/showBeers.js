@@ -3,28 +3,10 @@ import { withRouter } from 'react-router-dom'
 
 import { showBeers, deleteBeer } from '../../api/beer'
 import messages from '../AutoDismissAlert/messages'
-import styled from 'styled-components'
 
-// Styling for beers section
-const BeerWrapper = styled.div`
-  .beer-selection {
-    display: grid;
-    border: 1px solid black;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    font-family: 'Gloria Hallelujah', cursive;
-    margin: 1em;
-    padding: 1em;
-  }
-`
-
-const Header = styled.div`
-  display: grid;
-  justify-items: center;
-  margin: 1em;
-  font-size: 2em;
-  font-weight: bold;
-`
+// Styling
+import { BeerWrapper } from '../../styling/BeerWrapper'
+import { Header } from '../../styling/Header'
 
 class ShowBeers extends Component {
   constructor () {
@@ -66,7 +48,6 @@ class ShowBeers extends Component {
 
   render () {
     const { beers } = this.state
-    console.log(beers)
 
     if (!this.state.beers) {
       return <p>Loading...</p>
