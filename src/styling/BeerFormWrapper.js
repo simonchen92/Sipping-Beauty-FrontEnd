@@ -1,0 +1,10 @@
+import styled from 'styled-components'
+
+export const BeerFormWrapper = styled.div`
+border: 1px solid black;
+font-family: 'Gloria Hallelujah', cursive;
+margin: 1em;
+padding: 1em;
+text-align: center;
+}
+`

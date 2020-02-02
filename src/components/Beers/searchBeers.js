@@ -4,36 +4,10 @@ import { withRouter } from 'react-router-dom'
 
 import { searchBeers, addBeer } from '../../api/beer'
 import messages from '../AutoDismissAlert/messages'
-import styled from 'styled-components'
 
-const SearchBeerWrapper = styled.div`
-    border: 1px solid black;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    font-family: 'Gloria Hallelujah', cursive;
-    margin: 1em;
-    padding: 1em;
-    h3 {
-        text-align: left;
-    }
-`
-
-const SearchBar = styled.div`
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: 1em;
-        padding: 1em;
-    }
-    input {
-        width: 50vw;
-        align-self: center;
-    }
-    h3 {
-        text-align: center;
-    }
-`
+// Styling
+import { SearchBeerWrapper } from '../../styling/SearchBeerWrapper'
+import { SearchBar } from '../../styling/SearchBar'
 
 class SearchBeers extends Component {
   constructor () {

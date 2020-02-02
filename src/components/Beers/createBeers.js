@@ -5,16 +5,9 @@ import { Redirect } from 'react-router'
 import BeerForm from './beerForm'
 import messages from '../AutoDismissAlert/messages'
 import { createBeers } from '../../api/beer'
-import styled from 'styled-components'
 
-const BeerFormWrapper = styled.form`
-  border: 1px solid black;
-  font-family: 'Gloria Hallelujah', cursive;
-  margin: 1em;
-  padding: 1em;
-  text-align: center;
-  }
-`
+// Styling
+import { BeerFormWrapper } from '../../styling/BeerFormWrapper'
 
 class CreateBeers extends Component {
   constructor () {
@@ -50,7 +43,6 @@ class CreateBeers extends Component {
         message: messages.createBeerSuccess,
         variant: 'success'
       }))
-      .then(console.log(beer))
       .catch(() => {
         this.setState({ beer: { ...beer, name: '', beer_type: '', description: '', brewery: '', location: '', rating: '' } })
         alert({
