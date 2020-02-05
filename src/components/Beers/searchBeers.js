@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-// import { Redirect } from 'react-router'
 
 import { searchBeers, addBeer } from '../../api/beer'
 import messages from '../AutoDismissAlert/messages'
