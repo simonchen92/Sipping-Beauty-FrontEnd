@@ -6,7 +6,7 @@ import messages from '../AutoDismissAlert/messages'
 
 // Styling
 import { BeerWrapper } from '../../styling/BeerWrapper'
-import { Header } from '../../styling/Header'
+import { MyBeerHeader } from '../../styling/MyBeerHeader'
 
 class ShowBeers extends Component {
   constructor () {
@@ -55,9 +55,9 @@ class ShowBeers extends Component {
 
     return (
       <div className="main-beer-container">
-        <Header>
+        <MyBeerHeader>
           <div className="my-beers">My Beers</div>
-        </Header>
+        </MyBeerHeader>
         <BeerWrapper>
           <div className="beer-container">
             {beers.map((beer, index) => (

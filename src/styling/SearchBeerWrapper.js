@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export const SearchBeerWrapper = styled.div`
     border: 1px solid black;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 5px 6px 8px 0px rgba(153,153,153,0.5);
     font-family: 'Gloria Hallelujah', cursive;
     margin: 1em;
     padding: 1em;
