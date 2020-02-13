@@ -2,6 +2,9 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
+// Styling
+import './Header.scss'
+
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#beers">My Beers</Nav.Link>
@@ -26,12 +29,12 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar className="navbar" collapseOnSelect bg="light" variant="light" expand="true" sticky="top">
     <Navbar.Brand href="#">
       Sipping Beauty
     </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto">
         { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
         { alwaysOptions }
