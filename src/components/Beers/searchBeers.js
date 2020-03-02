@@ -33,6 +33,11 @@ class SearchBeers extends Component {
       .then(response => {
         if (response.data.records.length < 1) {
           this.setState({ search: '', empty: true })
+          alert({
+            heading: 'Cannot Find Beer',
+            message: messages.searchBeerFailure,
+            variant: 'danger'
+          })
         } else {
           this.setState({ results: response.data.records, search: '', empty: false })
         }
@@ -40,11 +45,6 @@ class SearchBeers extends Component {
       .catch(error => {
         console.error(error)
         this.setState({ search: '' })
-        alert({
-          heading: 'Cannot Find Beer',
-          message: messages.searchBeerFailure,
-          variant: 'danger'
-        })
       })
   }
 
