@@ -31,6 +31,16 @@ Sipping Beauty is an application where you can search information through [OpenB
 * Styled Components
 * OpenBeerDB
 
+## User Stories
+* As an unregistered user, I would like to sign up with email and password.
+* As a registered user, I would like to sign in with email and password.
+* As a signed in user, I would like to change password.
+* As a signed in user, I would like to sign out.
+* As a signed in user, I want to be able to create a new beers I like
+* As a signed in user, I want to be able to delete the beers from my list if I want to.
+* As a signed in user, I want to be able to search for all available beers that I want
+* As a signed in user, I want to be able to add those restaurant from my search to my list of beers.
+
 ## Planning / Development Process
 
 I began my project by mapping out my ERD (Entity Relationship Diagram) and then writing out my user stories to cater to what I would like to do with my application. Once all of this was done, I decided to go with building my back end infrastructure first so that I know what endpoints I need to give to receive data on the front end. I decided to go with Ruby on Rails for my back-end and setting up the relational data wasn't hard since Rails have some neat built in functions like `scaffold` which literally maps all the routes for you (aside from some tweaks here and there to make it how you want to display the data on to the user). Once it was built, I decided to do some back end testing using a third party application called Postman. Once the endpoints were working via Postman, I decided that I will work on the front end.
