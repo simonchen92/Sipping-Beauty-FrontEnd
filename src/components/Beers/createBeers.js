@@ -8,6 +8,7 @@ import { createBeers } from '../../api/beer'
 
 // Styling
 import { BeerFormWrapper } from '../../styling/BeerFormWrapper'
+import { CreateBeerHeader } from '../../styling/CreateBeerHeader'
 
 class CreateBeers extends Component {
   constructor () {
@@ -71,20 +72,25 @@ class CreateBeers extends Component {
     const { name, beer_type, description, brewery, location, rating } = this.state.beer
 
     return (
-      <BeerFormWrapper>
-        <BeerForm
-          name={name}
-          // eslint-disable-next-line camelcase
-          beer_type={beer_type}
-          description={description}
-          brewery={brewery}
-          address={location}
-          rating={rating}
-          message={message}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-        />
-      </BeerFormWrapper>
+      <div>
+        <CreateBeerHeader>
+          <h3>Create Your Beer</h3>
+        </CreateBeerHeader>
+        <BeerFormWrapper>
+          <BeerForm
+            name={name}
+            // eslint-disable-next-line camelcase
+            beer_type={beer_type}
+            description={description}
+            brewery={brewery}
+            address={location}
+            rating={rating}
+            message={message}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+          />
+        </BeerFormWrapper>
+      </div>
     )
   }
 }
