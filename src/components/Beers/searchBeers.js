@@ -52,7 +52,6 @@ class SearchBeers extends Component {
     event.preventDefault()
     const { alert, user } = this.props
     const beerObj = this.state.results[Number(event.target.value)]
-    console.log(beerObj)
 
     const addedBeer = {
       name: beerObj.fields.name,
